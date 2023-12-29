@@ -141,7 +141,7 @@ struct BMP {
 
         data = std::move(new_data);
 
-        // Изменение ширины и высоты
+        // Изменение ширины и высоты 
         std::swap(bmp_info_header.width, bmp_info_header.height);
     }
 
