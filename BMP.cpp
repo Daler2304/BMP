@@ -3,7 +3,7 @@
 BMP::BMP(const char* fname) {
     read(fname);
 }
-
+//чтение файла
 void BMP::read(const char* fname) {
     std::ifstream inp{ fname, std::ios_base::binary };
     if (inp) {
@@ -13,7 +13,7 @@ void BMP::read(const char* fname) {
         }
         inp.read((char*)&bmp_info_header, sizeof(bmp_info_header));
 
-        // ������� � ��������
+        //Переход к пикселям
         inp.seekg(file_header.offset_data, inp.beg);
 
 
@@ -29,7 +29,7 @@ void BMP::read(const char* fname) {
 
         data.resize(bmp_info_header.width * bmp_info_header.height * bmp_info_header.bit_count / 8);
 
-        // ׸������ �������
+        //Чётность отступа
         if (bmp_info_header.width % 4 == 0) {
             inp.read((char*)data.data(), data.size());
             file_header.file_size += static_cast<uint32_t>(data.size());
@@ -56,6 +56,7 @@ void BMP::read(const char* fname) {
     }
 }
 
+//запись данных в файл
 void BMP::write(const char* fname) {
 
     std::ofstream of{ fname, std::ios_base::binary };
@@ -92,6 +93,7 @@ void BMP::write(const char* fname) {
     }
 }
 
+//поворот на 90 градусов по часовой
 void BMP::rotate_clockwise_90() {
 
     std::vector<uint8_t> new_data(data.size());
@@ -109,10 +111,11 @@ void BMP::rotate_clockwise_90() {
 
     data = std::move(new_data);
 
-    // ��������� ������ � ������ 
+    //  Изменение ширины и высоты 
     std::swap(bmp_info_header.width, bmp_info_header.height);
 }
 
+//поворот на 90 градусов против часовой
 void BMP::rotate_counterclockwise_90() {
 
     std::vector<uint8_t> new_data(data.size());
