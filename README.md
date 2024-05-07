@@ -35,6 +35,6 @@
         <li>Инструменты компиляции C++ (например, g++ или Visual C++).</li>
     </ul>
     <h2>Автор</h2>
-    <p>Автор кода: <a href="https://github.com/your_username">Ваше Имя</a></p>
+    <p>Автор кода: <a href="https://github.com/Daler2304">Daler Sirozhidinov</a></p>
 </body>
 </html>
